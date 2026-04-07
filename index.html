@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NoneKnows — Share Your Secrets Anonymously</title>
+  <meta name="description" content="NoneKnows is the anonymous confession app where no one knows who you are. Share your deepest secrets safely."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #080808;
+      --surface: #111111;
+      --border: #1e1e1e;
+      --gold: #c8a84b;
+      --gold-dim: rgba(200,168,75,0.15);
+      --white: #f0f0f0;
+      --muted: #666666;
+      --dim: #333333;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      background: rgba(8,8,8,0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Caveat', cursive;
+      font-size: 28px;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 40px 80px;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(200,168,75,0.06) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hero-logo {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(64px, 12vw, 120px);
+      line-height: 0.9;
+      margin-bottom: 32px;
+      position: relative;
+    }
+
+    .hero-logo .line1 { display: block; }
+    .hero-logo .line2 { display: block; }
+
+    .eye-o {
+      display: inline-block;
+      position: relative;
+    }
+
+    .eye-o svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 0.8em;
+      height: 0.8em;
+    }
+
+    .eye-o-placeholder {
+      opacity: 0;
+    }
+
+    .hero-tagline {
+      font-size: clamp(16px, 2.5vw, 20px);
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 48px;
+      line-height: 1.6;
+    }
+
+    .hero-tagline em {
+      color: var(--white);
+      font-style: normal;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background: var(--white);
+      color: var(--black);
+      border-radius: 100px;
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .btn-primary:hover { opacity: 0.85; }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 100px;
+      font-size: 15px;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--muted);
+      color: var(--white);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--dim);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--dim), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.2); }
+    }
+
+    .features {
+      padding: 100px 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(36px, 5vw, 56px);
+      text-align: center;
+      margin-bottom: 64px;
+      color: var(--white);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      transition: border-color 0.3s;
+    }
+
+    .feature-card:hover { border-color: var(--dim); }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--gold-dim);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+
+    .feature-title {
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .feature-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .how-it-works {
+      padding: 100px 40px;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .steps {
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .step {
+      display: flex;
+      gap: 24px;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .step:last-child { border-bottom: none; }
+
+    .step-num {
+      font-family: 'Caveat', cursive;
+      font-size: 48px;
+      color: var(--gold);
+      opacity: 0.4;
+      line-height: 1;
+      min-width: 48px;
+    }
+
+    .step-content h3 {
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .step-content p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .privacy-section {
+      padding: 100px 40px;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .privacy-promise {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 48px;
+      margin-top: 48px;
+    }
+
+    .privacy-items {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 32px;
+      text-align: left;
+    }
+
+    .privacy-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .privacy-item .check {
+      color: var(--gold);
+      font-size: 16px;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .download-section {
+      padding: 100px 40px;
+      text-align: center;
+      position: relative;
+    }
+
+    .download-section::before {
+      content: '';
+      position: absolute;
+      width: 800px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(200,168,75,0.04) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .store-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+
+    .store-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 28px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      text-decoration: none;
+      color: var(--white);
+      transition: border-color 0.2s;
+    }
+
+    .store-btn:hover { border-color: var(--gold); }
+
+    .store-btn-icon { font-size: 28px; }
+
+    .store-btn-text { text-align: left; }
+
+    .store-btn-sub {
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .store-btn-name {
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-logo {
+      font-family: 'Caveat', cursive;
+      font-size: 24px;
+      color: var(--white);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--white); }
+
+    .footer-copy {
+      color: var(--dim);
+      font-size: 12px;
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 100px 20px 80px; }
+      .features { padding: 60px 20px; }
+      .how-it-works { padding: 60px 20px; }
+      .privacy-section { padding: 60px 20px; }
+      .download-section { padding: 60px 20px; }
+      .privacy-items { grid-template-columns: 1fr; }
+      footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">None<span>K</span>nows</a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#privacy">Privacy</a></li>
+    <li><a href="support.html">Support</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <p class="hero-eyebrow">Anonymous confession app</p>
+  <h1 class="hero-logo">
+    <span class="line1">N<span class="eye-o">
+      <svg viewBox="0 0 60 75" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="30" cy="37" rx="28" ry="35" stroke="#333" stroke-width="1.5"/>
+        <ellipse cx="30" cy="37" rx="18" ry="33" stroke="#c8a84b" stroke-width="1.5" opacity="0.6" transform="rotate(-15 30 37)"/>
+        <ellipse cx="30" cy="37" rx="18" ry="33" stroke="#c8a84b" stroke-width="1.5" opacity="0.6" transform="rotate(15 30 37)"/>
+        <ellipse cx="30" cy="43" rx="28" ry="12" stroke="#c8a84b" stroke-width="1" opacity="0.4"/>
+        <circle cx="30" cy="37" r="10" fill="#c8a84b" opacity="0.1"/>
+        <circle cx="30" cy="37" r="6" fill="#c8a84b" opacity="0.9"/>
+        <circle cx="33" cy="34" r="2.5" fill="#fff" opacity="0.95"/>
+        <circle cx="30" cy="37" r="3" fill="#080808"/>
+      </svg>
+      <span class="eye-o-placeholder">O</span>
+    </span>ne</span>
+    <span class="line2">Knows</span>
+  </h1>
+  <p class="hero-tagline">
+    Share your darkest secrets anonymously.<br/>
+    <em>No name. No email. No trace. Just truth.</em>
+  </p>
+  <div class="cta-group">
+    <a href="#download" class="btn-primary">Download free →</a>
+    <a href="#how" class="btn-secondary">How it works</a>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    scroll
+  </div>
+</section>
+
+<section class="features" id="features">
+  <p class="section-label">What we offer</p>
+  <h2 class="section-title">Built for your secrets</h2>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🤫</div>
+      <h3 class="feature-title">100% Anonymous</h3>
+      <p class="feature-desc">No email, no phone number, no real name required. Your identity is a cryptographic key that only lives on your device.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔐</div>
+      <h3 class="feature-title">Secure by design</h3>
+      <p class="feature-desc">Your identity is derived from a 5-word recovery phrase using cryptographic hashing. We literally cannot identify you.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">❤️</div>
+      <h3 class="feature-title">React & comment</h3>
+      <p class="feature-desc">React to confessions with emojis and leave anonymous comments. Build a reputation without revealing who you are.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📱</div>
+      <h3 class="feature-title">Any device</h3>
+      <p class="feature-desc">Recover your account on any device using just your 5-word phrase and PIN. No password reset emails ever.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🛡</div>
+      <h3 class="feature-title">Face ID protection</h3>
+      <p class="feature-desc">Your confessions are locked behind Face ID or fingerprint. Nobody can read your secrets even if they pick up your phone.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🚩</div>
+      <h3 class="feature-title">Safe community</h3>
+      <p class="feature-desc">Report harmful content easily. Posts are automatically hidden after multiple reports to keep the community safe.</p>
+    </div>
+  </div>
+</section>
+
+<section class="how-it-works" id="how">
+  <p class="section-label">Getting started</p>
+  <h2 class="section-title" style="text-align:center; font-family:'Caveat',cursive; font-size:clamp(36px,5vw,56px); margin-bottom:48px;">How it works</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h3>Get your recovery phrase</h3>
+        <p>The app generates a unique 5-word phrase just for you. Write it down. This is your only way back in — no email needed.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h3>Set your PIN</h3>
+        <p>Choose a 4-digit PIN as your second security layer. Combined with your phrase, this protects your account completely.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h3>Pick your handle</h3>
+        <p>Choose an anonymous handle like @shadow_soul or @void_walker. This is what others see — never your real name.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h3>Start confessing</h3>
+        <p>Share your darkest secrets, react to others, and comment anonymously. Face ID keeps everything locked when you're away.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="privacy-section" id="privacy">
+  <p class="section-label">Our promise</p>
+  <h2 class="section-title" style="font-family:'Caveat',cursive; font-size:clamp(36px,5vw,56px);">We know nothing about you</h2>
+  <p style="color:var(--muted); font-size:15px;">And that's exactly how we designed it.</p>
+  <div class="privacy-promise">
+    <div class="privacy-items">
+      <div class="privacy-item">
+        <span class="check">✓</span>
+        <span>No email address collected</span>
+      </div>
+      <div class="privacy-item">
+        <span class="check">✓</span>
+        <span>No phone number required</span>
+      </div>
+      <div class="privacy-item">
+        <span class="check">✓</span>
+        <span>No real name stored</span>
+      </div>
+      <div class="privacy-item">
+        <span class="check">✓</span>
+        <span>No location tracking</span>
+      </div>
+      <div class="privacy-item">
+        <span class="check">✓</span>
+        <span>No IP address logged</span>
+      </div>
+      <div class="privacy-item">
+        <span class="check">✓</span>
+        <span>Identity key stays on your device</span>
+      </div>
+      <div class="privacy-item">
+        <span class="check">✓</span>
+        <span>Zero personally identifiable data</span>
+      </div>
+      <div class="privacy-item">
+        <span class="check">✓</span>
+        <span>We cannot identify you even if asked</span>
+      </div>
+    </div>
+    <p style="margin-top:32px; font-size:13px; color:var(--dim);">
+      Read our full <a href="privacy.html" style="color:var(--gold); text-decoration:none;">Privacy Policy →</a>
+    </p>
+  </div>
+</section>
+
+<section class="download-section" id="download">
+  <p class="section-label">Available now</p>
+  <h2 style="font-family:'Caveat',cursive; font-size:clamp(36px,5vw,56px); margin-bottom:16px;">Download NoneKnows</h2>
+  <p style="color:var(--muted); font-size:15px;">Free. Anonymous. Yours.</p>
+  <div class="store-buttons">
+    <a href="#" class="store-btn">
+      <div class="store-btn-icon">🍎</div>
+      <div class="store-btn-text">
+        <div class="store-btn-sub">Download on the</div>
+        <div class="store-btn-name">App Store</div>
+      </div>
+    </a>
+    <a href="#" class="store-btn">
+      <div class="store-btn-icon">▶</div>
+      <div class="store-btn-text">
+        <div class="store-btn-sub">Get it on</div>
+        <div class="store-btn-name">Google Play</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">NoneKnows</div>
+  <ul class="footer-links">
+    <li><a href="privacy.html">Privacy Policy</a></li>
+    <li><a href="support.html">Support</a></li>
+    <li><a href="mailto:support@noneknows.com">Contact</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 NoneKnows. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

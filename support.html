@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Support — NoneKnows</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #080808;
+      --surface: #111111;
+      --border: #1e1e1e;
+      --gold: #c8a84b;
+      --white: #f0f0f0;
+      --muted: #666666;
+      --dim: #333333;
+    }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Caveat', cursive;
+      font-size: 28px;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-back {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--white); }
+    .content {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 64px 40px 100px;
+    }
+    .page-label {
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-family: 'Caveat', cursive;
+      font-size: 52px;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 56px;
+    }
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      margin-bottom: 48px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .contact-icon {
+      width: 56px;
+      height: 56px;
+      background: rgba(200,168,75,0.1);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+    .contact-info h3 {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+    .contact-info p {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .contact-info a {
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 15px;
+    }
+    .contact-info a:hover { text-decoration: underline; }
+    .faq-label {
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 24px 0;
+    }
+    .faq-item:first-of-type { border-top: 1px solid var(--border); }
+    .faq-q {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+    .faq-a {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .faq-a a { color: var(--gold); text-decoration: none; }
+    .response-time {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-top: 48px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 40px;
+      text-align: center;
+      color: var(--dim);
+      font-size: 13px;
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .content { padding: 40px 20px 60px; }
+      h1 { font-size: 40px; }
+      .contact-card { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">NoneKnows</a>
+  <a href="index.html" class="nav-back">← Back to home</a>
+</nav>
+
+<div class="content">
+  <p class="page-label">Help center</p>
+  <h1>Support</h1>
+  <p class="subtitle">We're here to help. Anonymously, of course.</p>
+
+  <div class="contact-card">
+    <div class="contact-icon">✉️</div>
+    <div class="contact-info">
+      <h3>Email support</h3>
+      <p>For any issues, questions or feedback about NoneKnows</p>
+      <a href="mailto:support@noneknows.com">support@noneknows.com</a>
+    </div>
+  </div>
+
+  <p class="faq-label">Frequently asked questions</p>
+
+  <div class="faq-item">
+    <p class="faq-q">I lost my recovery phrase. Can I recover my account?</p>
+    <p class="faq-a">Unfortunately, no. By design, your recovery phrase is the only way to access your account. We don't store it and cannot recover it for you — this is what makes NoneKnows truly anonymous. If you've lost your phrase, you'll need to create a new account. We recommend saving your phrase in a password manager or writing it down in a safe place.</p>
+  </div>
+
+  <div class="faq-item">
+    <p class="faq-q">How do I recover my account on a new phone?</p>
+    <p class="faq-a">Open NoneKnows on your new device, tap "Recover existing account", enter your 5-word recovery phrase and your 4-digit PIN. Your account and all your confessions will be restored automatically.</p>
+  </div>
+
+  <div class="faq-item">
+    <p class="faq-q">Is NoneKnows really anonymous?</p>
+    <p class="faq-a">Yes. We don't collect your name, email, phone number, or location. Your identity is derived from a cryptographic hash that lives only on your device. Even we cannot identify who posted any confession. Read our <a href="privacy.html">Privacy Policy</a> for full details.</p>
+  </div>
+
+  <div class="faq-item">
+    <p class="faq-q">How do I report a harmful confession?</p>
+    <p class="faq-a">Tap the 🚩 flag icon on any confession card. Select the reason for reporting. The confession will be immediately hidden from your feed and flagged for our review team. Posts that receive multiple reports are automatically hidden from everyone.</p>
+  </div>
+
+  <div class="faq-item">
+    <p class="faq-q">Can I delete my confessions?</p>
+    <p class="faq-a">Yes. Go to "My confessions" tab, find the confession you want to delete, and tap the 🗑 trash icon. This permanently removes the confession and all its comments and reactions.</p>
+  </div>
+
+  <div class="faq-item">
+    <p class="faq-q">Why can't I post a confession with my email or phone number?</p>
+    <p class="faq-a">NoneKnows automatically blocks personal information like email addresses and phone numbers from being posted. This protects both you and other users from accidental identity exposure.</p>
+  </div>
+
+  <div class="faq-item">
+    <p class="faq-q">How many confessions can I post per hour?</p>
+    <p class="faq-a">You can post up to 5 confessions per hour and up to 10 comments per hour. This helps prevent spam and keeps the community healthy.</p>
+  </div>
+
+  <div class="faq-item">
+    <p class="faq-q">Can I change my handle?</p>
+    <p class="faq-a">No — your handle is permanent once chosen. This is by design to maintain consistency in the community and protect the integrity of your anonymous identity.</p>
+  </div>
+
+  <div class="faq-item">
+    <p class="faq-q">The app is asking for Face ID. Is this safe?</p>
+    <p class="faq-a">Yes. Face ID is handled entirely by your device's operating system — NoneKnows never sees or stores any biometric data. Face ID is used only to unlock the app so nobody else can read your confessions if they pick up your phone.</p>
+  </div>
+
+  <div class="faq-item">
+    <p class="faq-q">I found a bug. How do I report it?</p>
+    <p class="faq-a">Email us at <a href="mailto:support@noneknows.com">support@noneknows.com</a> with a description of the bug and what you were doing when it happened. We appreciate your help making NoneKnows better!</p>
+  </div>
+
+  <div class="response-time">
+    <span>⏱</span>
+    <span>We typically respond to support emails within 24-48 hours.</span>
+  </div>
+</div>
+
+<footer>
+  © 2026 NoneKnows · <a href="privacy.html">Privacy Policy</a> · <a href="support.html">Support</a> · <a href="mailto:support@noneknows.com">support@noneknows.com</a>
+</footer>
+
+</body>
+</html>
