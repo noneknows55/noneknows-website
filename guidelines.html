@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Community Guidelines — NoneKnows</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #080808;
+      --surface: #111111;
+      --border: #1e1e1e;
+      --gold: #c8a84b;
+      --white: #f0f0f0;
+      --muted: #666666;
+      --dim: #333333;
+      --danger: #ef4444;
+      --success: #22c55e;
+    }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Caveat', cursive;
+      font-size: 28px;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-back {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .nav-back:hover { color: var(--white); }
+    .content {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 64px 40px 100px;
+    }
+    .page-label {
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-family: 'Caveat', cursive;
+      font-size: 52px;
+      margin-bottom: 8px;
+    }
+    .updated {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 40px;
+    }
+    .intro {
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 48px;
+      line-height: 1.8;
+    }
+    .rule-section {
+      margin-bottom: 40px;
+    }
+    .rule-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .rule-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .rule-icon.banned { background: rgba(239,68,68,0.1); }
+    .rule-icon.allowed { background: rgba(34,197,94,0.1); }
+    h2 {
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--white);
+    }
+    p {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    ul {
+      list-style: none;
+      margin-bottom: 16px;
+    }
+    ul li {
+      font-size: 14px;
+      color: var(--muted);
+      padding: 5px 0;
+      padding-left: 20px;
+      position: relative;
+    }
+    ul.banned li::before {
+      content: '✕';
+      position: absolute;
+      left: 0;
+      color: var(--danger);
+      font-size: 11px;
+      font-weight: 600;
+      top: 7px;
+    }
+    ul.allowed li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--success);
+      font-size: 11px;
+      font-weight: 600;
+      top: 7px;
+    }
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 32px 0;
+    }
+    .consequences {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      margin: 40px 0;
+    }
+    .consequences h3 {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .consequence-item {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+      align-items: flex-start;
+    }
+    .consequence-step {
+      font-size: 11px;
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      min-width: 60px;
+      padding-top: 2px;
+    }
+    .consequence-text {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .report-box {
+      background: rgba(200,168,75,0.05);
+      border: 1px solid rgba(200,168,75,0.2);
+      border-radius: 16px;
+      padding: 28px;
+      margin-top: 40px;
+    }
+    .report-box h3 {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .report-box p { color: var(--muted); font-size: 14px; }
+    a { color: var(--gold); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 40px;
+      text-align: center;
+      color: var(--dim);
+      font-size: 13px;
+    }
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .content { padding: 40px 20px 60px; }
+      h1 { font-size: 40px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">NoneKnows</a>
+  <a href="index.html" class="nav-back">← Back to home</a>
+</nav>
+
+<div class="content">
+  <p class="page-label">Community</p>
+  <h1>Community Guidelines</h1>
+  <p class="updated">Last updated: April 2026</p>
+
+  <p class="intro">
+    NoneKnows is built on anonymity, honesty, and trust. These guidelines exist to keep our community safe and meaningful. Anonymity is a privilege — not a shield for harm. We take violations seriously.
+  </p>
+
+  <div class="rule-section">
+    <div class="rule-header">
+      <div class="rule-icon allowed">✓</div>
+      <h2>What NoneKnows is for</h2>
+    </div>
+    <ul class="allowed">
+      <li>Sharing personal confessions, secrets, and experiences anonymously</li>
+      <li>Expressing feelings and thoughts you can't share elsewhere</li>
+      <li>Supporting others through empathetic reactions and comments</li>
+      <li>Building an honest, judgment-free community</li>
+      <li>Discussing difficult topics in a safe, anonymous environment</li>
+    </ul>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="rule-section">
+    <div class="rule-header">
+      <div class="rule-icon banned">✕</div>
+      <h2>1. No threats or harassment</h2>
+    </div>
+    <p>Anonymity does not give you the right to threaten or harass others.</p>
+    <ul class="banned">
+      <li>Threats of violence against any person or group</li>
+      <li>Targeted harassment of specific individuals</li>
+      <li>Bullying, intimidation, or repeated unwanted contact</li>
+      <li>Encouraging others to harass someone</li>
+    </ul>
+  </div>
+
+  <div class="rule-section">
+    <div class="rule-header">
+      <div class="rule-icon banned">✕</div>
+      <h2>2. No hate speech</h2>
+    </div>
+    <p>Content that dehumanizes people based on protected characteristics is not allowed.</p>
+    <ul class="banned">
+      <li>Hate speech targeting race, ethnicity, or national origin</li>
+      <li>Hate speech targeting religion or belief</li>
+      <li>Hate speech targeting gender or sexual orientation</li>
+      <li>Hate speech targeting disability or age</li>
+      <li>Use of slurs to attack people</li>
+    </ul>
+  </div>
+
+  <div class="rule-section">
+    <div class="rule-header">
+      <div class="rule-icon banned">✕</div>
+      <h2>3. No self-harm promotion</h2>
+    </div>
+    <p>We care about your wellbeing. Content that promotes or glorifies self-harm is strictly prohibited.</p>
+    <ul class="banned">
+      <li>Encouraging suicide or self-harm in others</li>
+      <li>Sharing methods of self-harm</li>
+      <li>Glorifying eating disorders</li>
+      <li>Content designed to trigger vulnerable people</li>
+    </ul>
+    <p style="color: #c8a84b; font-size: 13px; margin-top: 8px;">
+      If you or someone you know is struggling, please contact the 988 Suicide & Crisis Lifeline by calling or texting 988 (US).
+    </p>
+  </div>
+
+  <div class="rule-section">
+    <div class="rule-header">
+      <div class="rule-icon banned">✕</div>
+      <h2>4. No sexual content involving minors</h2>
+    </div>
+    <p>This is an absolute zero-tolerance rule. Any content that sexually exploits or endangers minors will result in immediate account termination and will be reported to the appropriate authorities including the National Center for Missing and Exploited Children (NCMEC).</p>
+  </div>
+
+  <div class="rule-section">
+    <div class="rule-header">
+      <div class="rule-icon banned">✕</div>
+      <h2>5. No doxxing or privacy violations</h2>
+    </div>
+    <p>Respect everyone's privacy — including people you know in real life.</p>
+    <ul class="banned">
+      <li>Sharing someone's real name, address, phone, or email without consent</li>
+      <li>Revealing someone's location or workplace to harm them</li>
+      <li>Sharing private images or information without consent</li>
+      <li>Attempting to identify other anonymous NoneKnows users</li>
+    </ul>
+  </div>
+
+  <div class="rule-section">
+    <div class="rule-header">
+      <div class="rule-icon banned">✕</div>
+      <h2>6. No illegal content</h2>
+    </div>
+    <ul class="banned">
+      <li>Content that facilitates or promotes illegal activity</li>
+      <li>Buying, selling, or trading illegal goods or services</li>
+      <li>Content that violates copyright or intellectual property law</li>
+      <li>Fraud, scams, or deceptive content</li>
+    </ul>
+  </div>
+
+  <div class="rule-section">
+    <div class="rule-header">
+      <div class="rule-icon banned">✕</div>
+      <h2>7. No spam or manipulation</h2>
+    </div>
+    <ul class="banned">
+      <li>Repetitive posts or spam</li>
+      <li>Coordinated mass reporting to silence users</li>
+      <li>Creating multiple accounts to evade bans</li>
+      <li>Using bots or automated tools</li>
+      <li>Advertising or commercial promotion</li>
+    </ul>
+  </div>
+
+  <div class="consequences">
+    <h3>⚖️ Consequences of violations</h3>
+    <div class="consequence-item">
+      <span class="consequence-step">STEP 1</span>
+      <span class="consequence-text">Content removal — violating posts are removed without notice</span>
+    </div>
+    <div class="consequence-item">
+      <span class="consequence-step">STEP 2</span>
+      <span class="consequence-text">Auto-hide — posts with 5+ reports are automatically hidden from the community</span>
+    </div>
+    <div class="consequence-item">
+      <span class="consequence-step">STEP 3</span>
+      <span class="consequence-step" style="min-width:60px"></span>
+      <span class="consequence-text">Account termination — repeated violations result in permanent ban</span>
+    </div>
+    <div class="consequence-item">
+      <span class="consequence-step">STEP 4</span>
+      <span class="consequence-text">Law enforcement referral — illegal content (especially CSAM) is reported to authorities immediately</span>
+    </div>
+  </div>
+
+  <div class="report-box">
+    <h3>🚩 How to report violations</h3>
+    <p>See something that violates these guidelines? Tap the 🚩 flag icon on any confession in the app. Select the reason that best describes the violation. We review all reports and take action within 48 hours for serious violations.</p>
+    <p style="margin-top: 12px;">For urgent safety concerns: <a href="mailto:support@noneknows.com">support@noneknows.com</a></p>
+  </div>
+</div>
+
+<footer>
+  © 2026 NoneKnows ·
+  <a href="privacy.html">Privacy Policy</a> ·
+  <a href="terms.html">Terms of Service</a> ·
+  <a href="guidelines.html">Community Guidelines</a> ·
+  <a href="support.html">Support</a>
+</footer>
+
+</body>
+</html>
