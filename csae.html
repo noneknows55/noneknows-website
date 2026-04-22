@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Child Safety Standards – NoneKnows</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #080808;
+      --surface: #111111;
+      --border: #1e1e1e;
+      --gold: #c8a84b;
+      --white: #f0f0f0;
+      --muted: #666666;
+      --dim: #333333;
+    }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      background: rgba(8,8,8,0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Caveat', cursive;
+      font-size: 28px;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    .page-content {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 140px 40px 100px;
+    }
+
+    .page-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .page-title {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(40px, 6vw, 64px);
+      color: var(--white);
+      margin-bottom: 8px;
+      line-height: 1.1;
+    }
+
+    .page-date {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 56px;
+    }
+
+    .section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      margin-bottom: 16px;
+    }
+
+    .section h2 {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+
+    .section p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+
+    .section p:last-child { margin-bottom: 0; }
+
+    .section ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .section ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .section ul li::before {
+      content: '✓';
+      color: var(--gold);
+      font-size: 14px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .section a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .section a:hover { text-decoration: underline; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-logo {
+      font-family: 'Caveat', cursive;
+      font-size: 24px;
+      color: var(--white);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--white); }
+
+    .footer-copy {
+      color: var(--dim);
+      font-size: 12px;
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .page-content { padding: 100px 20px 60px; }
+      footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">None<span>K</span>nows</a>
+  <ul class="nav-links">
+    <li><a href="/#features">Features</a></li>
+    <li><a href="/#how">How it works</a></li>
+    <li><a href="/#privacy">Privacy</a></li>
+    <li><a href="support.html">Support</a></li>
+  </ul>
+</nav>
+
+<div class="page-content">
+  <p class="page-eyebrow">Policy</p>
+  <h1 class="page-title">Child Safety Standards</h1>
+  <p class="page-date">Last updated: April 2026</p>
+
+  <div class="section">
+    <h2>Our Commitment</h2>
+    <p>NoneKnows has a zero-tolerance policy against child sexual abuse and exploitation (CSAE). We are committed to providing a safe environment and preventing any content or behavior that endangers minors.</p>
+  </div>
+
+  <div class="section">
+    <h2>Age Requirement</h2>
+    <p>NoneKnows is intended for users aged 18 and older. An age verification gate is presented to all users upon first launch. Users who do not confirm they are of age cannot access the app.</p>
+  </div>
+
+  <div class="section">
+    <h2>Prohibited Content</h2>
+    <p>The following content is strictly prohibited on NoneKnows:</p>
+    <ul>
+      <li>Any content that sexually exploits or abuses minors</li>
+      <li>Grooming, solicitation, or exploitation of minors in any form</li>
+      <li>Sharing, distributing, or linking to CSAE material</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Content Moderation</h2>
+    <p>NoneKnows employs automated content filtering to block prohibited content at the point of submission. Users can report any content that violates our policies. Reported content is reviewed and actioned promptly. Accounts found violating these standards are permanently banned.</p>
+  </div>
+
+  <div class="section">
+    <h2>Reporting</h2>
+    <p>If you encounter any content or behavior that you believe constitutes child sexual abuse or exploitation, please report it immediately to <a href="mailto:support@noneknows.com">support@noneknows.com</a>.</p>
+    <p>We also report confirmed CSAE content to the National Center for Missing and Exploited Children (NCMEC) and cooperate fully with law enforcement.</p>
+  </div>
+
+  <div class="section">
+    <h2>Contact</h2>
+    <p>For any questions regarding our child safety standards, contact us at <a href="mailto:support@noneknows.com">support@noneknows.com</a>.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">NoneKnows</div>
+  <ul class="footer-links">
+    <li><a href="privacy.html">Privacy Policy</a></li>
+    <li><a href="terms.html">Terms of Service</a></li>
+    <li><a href="guidelines.html">Community Guidelines</a></li>
+    <li><a href="support.html">Support</a></li>
+    <li><a href="mailto:support@noneknows.com">Contact</a></li>
+    <li><a href="csae.html">Child Safety</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 NoneKnows. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
